@@ -2,7 +2,7 @@
 //  ViewController.h
 //  OPLaunchAd
 //
-//  Created by Venus on 12-10-22.
+//  Created by SeanWang on 12-10-22.
 //  Copyright (c) 2012年 opomelo. All rights reserved.
 //
 

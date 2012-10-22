@@ -2,11 +2,12 @@
 //  AppDelegate.m
 //  OPLaunchAd
 //
-//  Created by Venus on 12-10-22.
+//  Created by SeanWang on 12-10-22.
 //  Copyright (c) 2012年 opomelo. All rights reserved.
 //
 
 #import "AppDelegate.h"
+#import <QuartzCore/QuartzCore.h>
 
 #import "ViewController.h"
 
@@ -15,10 +16,32 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
     self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
+    
+    NSString *adURL = @"http://wallsdl.com/wallpapers/2012/01/space-shuttle-discovery-launch-960x640.jpg";
+    
+    //add the advertisement image to the front
+    UIImageView *adImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height)];
+    [adImage setImage:[[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[adURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]]];
+    [self.window addSubview:adImage];
+    [self.window bringSubviewToFront:adImage];
+    
+    //reset the advertisement image view frame
+    adImage.frame = CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height);
+    
+    //display advertisement
+    [UIView animateWithDuration:6.0
+                          delay:0.1
+                        options:(UIViewAnimationCurveEaseOut)
+                     animations:^{
+                         adImage.alpha = 1.0;
+                         adImage.alpha = 0.0;
+                     } completion:^(BOOL finished){
+                         [adImage removeFromSuperview]; // remove that imageview from the view
+                     }];
+    
     return YES;
 }
 

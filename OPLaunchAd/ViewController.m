@@ -2,7 +2,7 @@
 //  ViewController.m
 //  OPLaunchAd
 //
-//  Created by Venus on 12-10-22.
+//  Created by SeanWang on 12-10-22.
 //  Copyright (c) 2012年 opomelo. All rights reserved.
 //
 
@@ -18,6 +18,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)didReceiveMemoryWarning
